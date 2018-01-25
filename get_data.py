@@ -1,4 +1,4 @@
-#v2.0
+#v2.01 1/25/18
 import requests
 import time
 import datetime
@@ -7,24 +7,25 @@ import get_time
 import collections
 import json
 import calendar
+import credentials
 
 def my_filtered_activities(): #combines my_activities and filter functions
     url = 'https://www.strava.com/api/v3/athlete/activities'
-    header = {'Authorization': 'Bearer 20e053894a514fbd2b42e2601d33976f6bccebea'}
+    header = {'Authorization': 'Bearer '+credentials.api_key}
     param = {'per_page':200, 'page':1}
     dataset = requests.get(url, headers=header, params=param).json()
     return {event_timestamp(i): clean_event(i) for i in dataset if wanted_event(i)}
 
 def my_activities():
     url = 'https://www.strava.com/api/v3/athlete/activities'
-    header = {'Authorization': 'Bearer 20e053894a514fbd2b42e2601d33976f6bccebea'}
+    header = {'Authorization': 'Bearer '+credentials.api_key}
     param = {'per_page':200, 'page':1}
     my_dataset = requests.get(url, headers=header, params=param).json()
     return my_dataset
 
 def activities():
     url = 'https://www.strava.com/api/v3/activities/following'
-    header = {'Authorization': 'Bearer 20e053894a514fbd2b42e2601d33976f6bccebea'}
+    header = {'Authorization': 'Bearer '+credentials.api_key}
     param = {'per_page':200, 'page':1}
     dataset = requests.get(url, headers=header, params=param).json()
     return dataset
