@@ -151,6 +151,11 @@ def button_action_1(sender):
     elif button1.selected_index == 3:
         period(master_dict,3,4)
 
+def MTD(months_ago):
+    month_total_dict = calc.monthly_daily_totals(master_dict,months_ago,'distance_miles')
+    return latest_value = month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
+
+
 # starts gui
 v = ui.load_view()
 v.background_color = "black"
@@ -164,9 +169,5 @@ current_period(master_dict)
 period(master_dict,0,1)
 
 
-month_total_dict = calc.monthly_daily_totals(master_dict,0,'distance_miles')
-latest_date = max(month_total_dict.keys())
-latest_value = month_total_dict[latest_date]
-
 label41= v['label41']
-label41.text = str(latest_value)
+label41.text = str(MTD(0))
