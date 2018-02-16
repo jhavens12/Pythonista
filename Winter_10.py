@@ -215,13 +215,20 @@ miles_this_year = sum(ytd_miles)
 print("miles_this_year")
 print(miles_this_year)
 
-print("how many miles to get to my 2018 goal by the end of the month per run?")
+
 goal_2018 = 600
 MPD = goal_2018/365
 day_of_year = datetime.datetime.now().timetuple().tm_yday
 target_miles = MPD*day_of_year
 remaining_ytd_miles = target_miles - miles_this_year
 
+print("target miles")
+print(target_miles)
+
+print("remaining ytd miles")
+print(remaining_ytd_miles)
+
+print("how many miles to get to my 2018 goal by the end of the month per run?")
 print(remaining_ytd_miles/runs_remain)
 
 
