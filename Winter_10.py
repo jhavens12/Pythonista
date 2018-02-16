@@ -201,21 +201,29 @@ print("how many miles per run to match last month?")
 print(abs(month_difference/runs_remain))
 print("how many miles per run to reach 50 miles this month?")
 print((50-this_month)/runs_remain)
-print("how many miles to get to my 2018 goal by the end of the month per run?")
+
 
 ytd_dict = master_dict.copy()
-
 for key in list(ytd_dict):
     if key < get_time.FOY():
         del ytd_dict[key]
-
 ytd_miles = []
 for run in ytd_dict:
     ytd_miles.append(float(ytd_dict[run]['distance_miles']))
-
 miles_this_year = sum(ytd_miles)
+
 print("miles_this_year")
 print(miles_this_year)
+
+print("how many miles to get to my 2018 goal by the end of the month per run?")
+goal_2018 = 600
+MPD = goal_2018/365
+day_of_year = datetime.datetime.now().timetuple().tm_yday
+target_miles = MPD*day_of_year
+remaining_ytd_miles = target_miles - miles_this_year
+
+print(remaining_ytd_miles/runs_remain)
+
 
 
 #guess at how many runs remain`
