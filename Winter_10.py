@@ -9,6 +9,8 @@ import matplotlib.dates as mdates
 import pylab
 from io import BytesIO
 from pprint import pprint
+import datetime #recently added
+import math #recently added
 
 master_dict = get_data.my_filtered_activities()
 
@@ -153,8 +155,6 @@ def button_action_1(sender):
 
 def MTD(dictionary,months_ago):
     month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
-    print(month_total_dict)
-    print()
     return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
 
 
@@ -178,12 +178,10 @@ last_month = MTD(master_dict.copy(),1)
 month_difference = this_month - last_month
 
 now = datetime.datetime.now()
-past = datetime.datetime(now.year, now.month - (x-1), 1) - (datetime.timedelta(days=1))
+past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
 LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
 
-
-
-days_remaining = LOM.days - now.days
+days_remaining = LOM.day - now.day
 
 print("days remaining")
 print(days_remaining)
@@ -193,7 +191,37 @@ print(month_difference)
 # difference
 # days remaining in month
 
+runs_per_week = 3
+runs_remain = math.ceil(days_remaining*(runs_per_week/7))
 
+print("how many runs remain?")
+print(runs_remain)
+
+print("how many miles per run to match last month?")
+print(month_difference/runs_remain)
+print("how many miles to reach 50 miles this month?")
+print((50-this_month)/runs_remain)
+print("how many miles to get to my 2018 goal by the end of the month per run?")
+
+ytd_dict = master_dict.copy()
+
+for key in list(ytd_dict):
+    if key < get_time.FOY():
+        del ytd_dict[key]
+
+ytd_miles = []
+for run in ytd_dict:
+    ytd_miles.append(ytd_dict[run]['distance_miles'])
+
+miles_this_year = sum(ytd_miles)
+print("miles_this_year")
+print(miles_this_year)
+
+
+#guess at how many runs remain`
+#distance remaninging per run to match last month
+#distance remaninging per run to hit 50
+#distance remaining per run to catch up on goal
 
 
 #labels
