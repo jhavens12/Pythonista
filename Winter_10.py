@@ -171,3 +171,6 @@ period(master_dict,0,1)
 
 label41= v['label41']
 label41.text = str(MTD(0))
+
+label42= v['label42']
+label42.text = str(MTD(1))
