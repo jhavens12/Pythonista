@@ -1,25 +1,16 @@
 import datetime
 import math
+import get_time
+import get_data
+import calc
+from pprint import pprint
 
-now = datetime.datetime.now()
-past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
-LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+master_dict = get_data.my_filtered_activities()
 
-days_remaining = LOM.day - now.day
+#get dictionary of months and their total miles ran
 
-print(days_remaining)
-print(now.day)
-print(LOM.day)
+def MTD(dictionary,months_ago):
+    month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
+    return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
 
-runs_per_week = 3
-avg1 = runs_per_week/7
-runs_remain = math.ceil(days_remaining*avg1)
-
-print("how many runs remain?")
-print(math.ceil(days_remaining*avg1))
-
-print("DAY OF YEAR")
-timestamp = datetime.datetime.now()
-day_of_year = datetime.datetime.now().timetuple().tm_yday
-#days_in_the_year = (timestamp - datetime.datetime.date(timestamp.year,1,1)).days + 1
-print(day_of_year)
+pprint(calc.monthly_stats(master_dict))

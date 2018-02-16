@@ -1,10 +1,10 @@
-#v1.2
-#This is the main file unless I made a mistake
+#v4 - created for Pythonista github
 import time
 import datetime
 from datetime import date
 import get_time
 import pprint
+import calendar
 
 
 #
@@ -87,3 +87,35 @@ def monthly_daily_totals(dictionary,time_input,unit_input):
                 day_count_list.append(activity.day) #add day that count occurs
 
     return dict(zip(day_count_list,mile_count_list))
+
+# also new
+
+def monthly_stats(dictionary):
+    #used to return dictionary of stats for each month - key is just a string
+    #currently only distance_miles is being used
+    #can certainly be expanded upon in the future
+    count_dict = {}
+    for date in dictionary:
+        count_dict[str(date.year)+"-"+str(date.month)] = [] #create dict of lists
+        #count_dict[datetime.datetime(date.year,date.month,1)] = [] #use datetime as key
+
+    for date in dictionary:
+        count_dict[str(date.year)+"-"+str(date.month)].append(float(dictionary[date]['distance_miles'])) #creates list of distance_miles
+        #count_dict[datetime.datetime(date.year,date.month,1)].append(dictionary[date]['distance_miles']) #use datetime as key
+
+    final_dict = {}
+    for month in count_dict:
+        final_dict[month] = {}
+        final_dict[month]['run_count'] = len(count_dict[month])
+        final_dict[month]['miles_ran'] = sum(count_dict[month])
+        month_name = month.split('-')
+        final_dict[month]['year'] = str(month_name[0])
+        final_dict[month]['month'] = str(month_name[1])
+        final_dict[month]['date_human'] = str(calendar.month_name[int(month_name[1])]+" "+month_name[0])
+
+    return final_dict
+
+def weekly_stats(dictionary):
+    #same as monthly status but for every week sunday - monday
+    #point to find week that has highest miles or most runs
+    return 0

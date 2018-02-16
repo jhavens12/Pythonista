@@ -186,7 +186,7 @@ LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, sec
 
 days_remaining = LOM.day - now.day
 print("MONTHLY")
-print("********")
+print("**********")
 print("Miles Ran This Month: "+str(this_month))
 
 print("Miles Ran Last Month: "+str(last_month))
@@ -202,6 +202,21 @@ print("Runs Remaining This Month ("+str(runs_per_week)+" per week): "+str(runs_r
 
 print("Miles Per Run to Match Last Month: "+str(abs(month_difference/runs_remain)))
 
+monthly_dict = calc.monthly_stats(master_dict.copy())
+
+
+for month in monthly_dict:
+    max_miles = 0
+    if monthly_dict[month]['miles_ran'] > max_miles:
+        max_miles = monthly_dict[month]['miles_ran']
+        most_miles_month = month
+
+print("Month with highest mile count: "+monthly_dict[month]['date_human'])
+
+print("Most Miles Ran in a month: "+str(max_miles))
+
+print("Miles Per Run to Match Highest Month: ")
+
 ytd_dict = master_dict.copy()
 for key in list(ytd_dict):
     if key < get_time.FOY():
@@ -212,7 +227,7 @@ for run in ytd_dict:
 miles_this_year = sum(ytd_miles)
 print()
 print("YEAR TO DATE")
-print("********")
+print("**********")
 print("Miles Ran This Year: "+str(miles_this_year))
 
 goal_2018 = 600
@@ -221,13 +236,14 @@ day_of_year = LOM.timetuple().tm_yday
 target_miles = MPD*day_of_year
 remaining_ytd_miles = target_miles - miles_this_year
 
-print("2018 Goal for today: "+str(target_miles))
 
-print("Miles Behind YTD Goal: "+str(remaining_ytd_miles))
+print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
 
-print("Miles to YTD Goal by End of Month: "+str(remaining_ytd_miles/runs_remain))
+print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
 
-print("Miles to Goal of 50 by End of Month: "+str((50-this_month)/runs_remain))
+print("Miles per run to YTD Goal by End of Month: "+str(("{0:.2f}".format(remaining_ytd_miles/runs_remain))))
+
+print("Miles per run to Goal of 50 by End of Month: "+str(("{0:.2f}".format((50-this_month)/runs_remain))))
 
 
 #guess at how many runs remain`
