@@ -115,7 +115,31 @@ def monthly_stats(dictionary):
 
     return final_dict
 
+
 def weekly_stats(dictionary):
     #same as monthly status but for every week sunday - monday
     #point to find week that has highest miles or most runs
-    return 0
+    count_dict = {} #create keys (weeks)
+    for date in dictionary:
+        #day_of_month = datetime.datetime.now().day
+        #week_number = ((date.day - 1) // 7)
+        week_number = date.isocalendar()[1]
+        count_dict[str(date.year)+"-"+str(week_number)] = []
+    for date in dictionary:
+        week_number = date.isocalendar()[1]
+        count_dict[str(date.year)+"-"+str(week_number)].append(float(dictionary[date]['distance_miles']))
+
+    final_dict = {}
+    for week in count_dict:
+        final_dict[week] = {}
+        final_dict[week]['run_count'] = len(count_dict[week])
+        final_dict[week]['miles_ran'] = sum(count_dict[week])
+        week_name = week.split('-')
+        final_dict[week]['year'] = str(week_name[0])
+        final_dict[week]['week'] = str(week_name[1])
+
+        final_dict[week]['date_human'] = datetime.datetime.strptime(week + '-1', "%Y-%W-%w")
+
+
+
+    return final_dict
