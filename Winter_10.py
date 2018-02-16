@@ -232,7 +232,7 @@ print("Most Mile Week: "+str(weekly_dict[most_miles_week]['date_human']))
 
 print("Most Miles Run in a Week: "+str(max_weekly_miles))
 
-print("Miles Per Run to Match Highest Week: "+str((max_weekly_miles-current_miles)/runs_remain))
+print("Miles Per Run to Match Highest Week: "+str(float(max_weekly_miles)-float(current_miles))/runs_remain)
 
 print("Miles to Match Highest Week: "+str(max_weekly_miles-current_miles))
 
