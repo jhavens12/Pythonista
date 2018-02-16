@@ -228,9 +228,9 @@ for week in weekly_dict:
         max_weekly_miles = int(weekly_dict[week]['miles_ran'])
         most_miles_week = week
 
-print("Most Mile Week: "weekly_dict[most_miles_week]['date_human'])
+print("Most Mile Week: "+str(weekly_dict[most_miles_week]['date_human']))
 
-print("Most Miles Run in a Week: "str(max_weekly_miles))
+print("Most Miles Run in a Week: "+str(max_weekly_miles))
 
 print("Miles Per Run to Match Highest Week: ")
 
