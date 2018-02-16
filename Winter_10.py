@@ -162,9 +162,9 @@ v.present(style='sheet', hide_title_bar=True)
 
 current_period(master_dict)
 period(master_dict,0,1)
-MTD(master_dict)
+
 
 current_total_miles = monthly_daily_totals(master_dict,0,'distance_miles')
 
-label40= v['label40']
-label40.text = str(remaining_miles)
+label41= v['label41']
+label41.text = str(current_total_miles)
