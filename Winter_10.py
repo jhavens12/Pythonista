@@ -165,7 +165,8 @@ period(master_dict,0,1)
 
 
 month_total_dict = calc.monthly_daily_totals(master_dict,0,'distance_miles')
-latest_total = max(month_total_dict.keys())
+latest_date = max(month_total_dict.keys())
+latest_value = month_total_dict[latest_date]
 
 label41= v['label41']
-label41.text = str(latest_total)
+label41.text = str(latest_value)
