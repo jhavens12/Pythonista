@@ -167,12 +167,38 @@ button1.action = button_action_1
 
 v.present(style='sheet', hide_title_bar=True)
 
+#initial data presentation
 current_period(master_dict)
 period(master_dict,0,1)
 
+#static labels near bottom
+this_month = MTD(master_dict.copy(),0)
+last_month = MTD(master_dict.copy(),1)
 
+month_difference = this_month - last_month
+
+now = datetime.datetime.now()
+past = datetime.datetime(now.year, now.month - (x-1), 1) - (datetime.timedelta(days=1))
+LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+
+
+
+days_remaining = LOM.days - now.days
+
+print("days remaining")
+print(days_remaining)
+print("difference")
+print(month_difference)
+
+# difference
+# days remaining in month
+
+
+
+
+#labels
 label41= v['label41']
-label41.text = str(MTD(master_dict.copy(),0))
+label41.text = str(this_month)
 
 label42= v['label42']
-label42.text = str(MTD(master_dict.copy(),1))
+label42.text = str(last_month)
