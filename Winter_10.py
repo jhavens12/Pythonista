@@ -153,6 +153,8 @@ def button_action_1(sender):
 
 def MTD(months_ago):
     month_total_dict = calc.monthly_daily_totals(master_dict,months_ago,'distance_miles')
+    print(month_total_dict)
+    print()
     return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
 
 
