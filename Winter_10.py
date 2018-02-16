@@ -164,7 +164,8 @@ current_period(master_dict)
 period(master_dict,0,1)
 
 
-current_total_miles = monthly_daily_totals(master_dict,0,'distance_miles')
+month_total_dict = calc.monthly_daily_totals(master_dict,0,'distance_miles')
+latest_total = sorted(reversed(month_total_dict.keys()))[0]
 
 label41= v['label41']
-label41.text = str(current_total_miles)
+label41.text = str(latest_total)
