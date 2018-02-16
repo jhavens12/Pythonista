@@ -191,7 +191,6 @@ print("Miles Ran This Month: "+str(this_month))
 
 print("Miles Ran Last Month: "+str(last_month))
 
-print(month_difference)
 print("Days in Month Remaining: "+str(days_remaining))
 
 print("Difference Last Month vs This Month: "+str(month_difference))
