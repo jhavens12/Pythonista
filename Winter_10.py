@@ -216,6 +216,24 @@ print("Most Miles Ran in a month: "+str(max_miles))
 
 print("Miles Per Run to Match Highest Month: "+str((max_miles-this_month)/runs_remain))
 
+print()
+print("WEEKLY")
+print("********")
+
+weekly_dict = calc.weekly_stats(master_dict.copy())
+
+max_weekly_miles = 0
+for week in weekly_dict:
+    if weekly_dict[week]['miles_ran'] > max_weekly_miles:
+        max_weekly_miles = int(weekly_dict[week]['miles_ran'])
+        most_miles_week = week
+
+print("Most Mile Week: "weekly_dict[most_miles_week]['date_human'])
+
+print("Most Miles Run in a Week: "str(max_weekly_miles))
+
+print("Miles Per Run to Match Highest Week: ")
+
 ytd_dict = master_dict.copy()
 for key in list(ytd_dict):
     if key < get_time.FOY():
