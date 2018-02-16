@@ -198,8 +198,8 @@ print("how many runs remain?")
 print(runs_remain)
 
 print("how many miles per run to match last month?")
-print(month_difference/runs_remain)
-print("how many miles to reach 50 miles this month?")
+print(abs(month_difference/runs_remain))
+print("how many miles per run to reach 50 miles this month?")
 print((50-this_month)/runs_remain)
 print("how many miles to get to my 2018 goal by the end of the month per run?")
 
@@ -211,7 +211,7 @@ for key in list(ytd_dict):
 
 ytd_miles = []
 for run in ytd_dict:
-    ytd_miles.append(ytd_dict[run]['distance_miles'])
+    ytd_miles.append(float(ytd_dict[run]['distance_miles']))
 
 miles_this_year = sum(ytd_miles)
 print("miles_this_year")
