@@ -207,14 +207,14 @@ monthly_dict = calc.monthly_stats(master_dict.copy())
 max_miles = 0
 for month in monthly_dict:
     if monthly_dict[month]['miles_ran'] > max_miles:
-        max_miles = monthly_dict[month]['miles_ran']
+        max_miles = int(monthly_dict[month]['miles_ran'])
         most_miles_month = month
 
-print("Month with highest mile count: "+monthly_dict[month]['date_human'])
+print("Most Mile Month: "+monthly_dict[most_miles_month]['date_human'])
 
 print("Most Miles Ran in a month: "+str(max_miles))
 
-print("Miles Per Run to Match Highest Month: ")
+print("Miles Per Run to Match Highest Month: "+str((max_miles-this_month)/runs_remain))
 
 ytd_dict = master_dict.copy()
 for key in list(ytd_dict):
