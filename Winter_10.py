@@ -232,7 +232,13 @@ print("Most Mile Week: "+str(weekly_dict[most_miles_week]['date_human']))
 
 print("Most Miles Run in a Week: "+str(max_weekly_miles))
 
-print("Miles Per Run to Match Highest Week: ")
+print("Miles Per Run to Match Highest Week: "+str((max_weekly_miles-current_miles)/runs_remain))
+
+print("Miles to Match Highest Week: "+str(max_weekly_miles-current_miles))
+
+print("Most Number of Runs in a Week:")
+
+
 
 ytd_dict = master_dict.copy()
 for key in list(ytd_dict):

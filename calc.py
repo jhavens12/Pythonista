@@ -140,6 +140,4 @@ def weekly_stats(dictionary):
 
         final_dict[week]['date_human'] = datetime.datetime.strptime(week + '-1', "%Y-%W-%w")
 
-
-
     return final_dict
