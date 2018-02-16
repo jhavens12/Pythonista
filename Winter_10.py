@@ -171,7 +171,10 @@ v.present(style='sheet', hide_title_bar=True)
 current_period(master_dict)
 period(master_dict,0,1)
 
-#static labels near bottom
+#####
+##NEW DATA`
+####
+
 this_month = MTD(master_dict.copy(),0)
 last_month = MTD(master_dict.copy(),1)
 
@@ -182,26 +185,23 @@ past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(d
 LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
 
 days_remaining = LOM.day - now.day
+print("MONTHLY")
+print("********")
+print("Miles Ran This Month: "+str(this_month))
 
-print("days remaining")
-print(days_remaining)
-print("difference")
+print("Miles Ran Last Month: "+str(last_month))
+
 print(month_difference)
+print("Days in Month Remaining: "+str(days_remaining))
 
-# difference
-# days remaining in month
+print("Difference Last Month vs This Month: "+str(month_difference))
 
 runs_per_week = 3
 runs_remain = math.ceil(days_remaining*(runs_per_week/7))
 
-print("how many runs remain?")
-print(runs_remain)
+print("Runs Remaining This Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
 
-print("how many miles per run to match last month?")
-print(abs(month_difference/runs_remain))
-print("how many miles per run to reach 50 miles this month?")
-print((50-this_month)/runs_remain)
-
+print("Miles Per Run to Match Last Month: "+str(abs(month_difference/runs_remain)))
 
 ytd_dict = master_dict.copy()
 for key in list(ytd_dict):
@@ -211,10 +211,10 @@ ytd_miles = []
 for run in ytd_dict:
     ytd_miles.append(float(ytd_dict[run]['distance_miles']))
 miles_this_year = sum(ytd_miles)
-
-print("miles_this_year")
-print(miles_this_year)
-
+print()
+print("YEAR TO DATE")
+print("********")
+print("Miles Ran This Year: "+str(miles_this_year))
 
 goal_2018 = 600
 MPD = goal_2018/365
@@ -222,26 +222,16 @@ day_of_year = LOM.timetuple().tm_yday
 target_miles = MPD*day_of_year
 remaining_ytd_miles = target_miles - miles_this_year
 
-print("YTD Goal Target Miles:")
-print(target_miles)
+print("2018 Goal for today: "+str(target_miles))
 
-print("Miles Behind YTD Goal:")
-print(remaining_ytd_miles)
+print("Miles Behind YTD Goal: "+str(remaining_ytd_miles))
 
-print("how many miles to get to my 2018 goal by the end of the month per run?")
-print(remaining_ytd_miles/runs_remain)
+print("Miles to YTD Goal by End of Month: "+str(remaining_ytd_miles/runs_remain))
 
+print("Miles to Goal of 50 by End of Month: "+str((50-this_month)/runs_remain))
 
 
 #guess at how many runs remain`
 #distance remaninging per run to match last month
 #distance remaninging per run to hit 50
 #distance remaining per run to catch up on goal
-
-
-#labels
-label41= v['label41']
-label41.text = str(this_month)
-
-label42= v['label42']
-label42.text = str(last_month)
