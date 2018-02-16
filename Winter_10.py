@@ -151,8 +151,8 @@ def button_action_1(sender):
     elif button1.selected_index == 3:
         period(master_dict,3,4)
 
-def MTD(months_ago):
-    month_total_dict = calc.monthly_daily_totals(master_dict,months_ago,'distance_miles')
+def MTD(dictionary,months_ago):
+    month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
     print(month_total_dict)
     print()
     return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
@@ -172,7 +172,7 @@ period(master_dict,0,1)
 
 
 label41= v['label41']
-label41.text = str(MTD(0))
+label41.text = str(MTD(master_dict.copy(),0))
 
 label42= v['label42']
-label42.text = str(MTD(1))
+label42.text = str(MTD(master_dict.copy(),1))
