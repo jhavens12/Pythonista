@@ -204,9 +204,8 @@ print("Miles Per Run to Match Last Month: "+str(abs(month_difference/runs_remain
 
 monthly_dict = calc.monthly_stats(master_dict.copy())
 
-
+max_miles = 0
 for month in monthly_dict:
-    max_miles = 0
     if monthly_dict[month]['miles_ran'] > max_miles:
         max_miles = monthly_dict[month]['miles_ran']
         most_miles_month = month
