@@ -228,11 +228,17 @@ for week in weekly_dict:
         max_weekly_miles = int(weekly_dict[week]['miles_ran'])
         most_miles_week = week
 
+print("Miles This Week: "+str(current_miles))
+
+print("Miles Last Week: "+str(past_miles))
+
+print("10 Percent Last Week: "+str(past_ten_percent))
+
 print("Most Mile Week: "+str(weekly_dict[most_miles_week]['date_human']))
 
 print("Most Miles Run in a Week: "+str(max_weekly_miles))
 
-print("MPR to Match Highest Week: "+str((float(max_weekly_miles)-float(current_miles))/float(runs_remain)))
+#print("MPR to Match Highest Week: "+str((float(max_weekly_miles)-float(current_miles))/float(runs_remain))) #runs_remain is for month, not week
 
 print("Miles to Match Highest Week: "+str(float(max_weekly_miles)-float(current_miles)))
 
