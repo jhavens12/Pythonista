@@ -193,14 +193,14 @@ print("Miles Ran Last Month: "+str(last_month))
 
 print("Days in Month Remaining: "+str(days_remaining))
 
-print("Difference Last Month vs This Month: "+str(month_difference))
+print("Difference Last Month vs This Month: "+str("{0:.2f}".format(month_difference)))
 
 runs_per_week = 3
 runs_remain = math.ceil(days_remaining*(runs_per_week/7))
 
 print("Runs Remaining This Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
 
-print("Miles Per Run to Match Last Month: "+str(abs(month_difference/runs_remain)))
+print("MPR to Match Last Month: "+str("{0:.2f}".format(abs(month_difference/runs_remain))))
 
 monthly_dict = calc.monthly_stats(master_dict.copy())
 
@@ -214,7 +214,7 @@ print("Most Mile Month: "+monthly_dict[most_miles_month]['date_human'])
 
 print("Most Miles Ran in a month: "+str(max_miles))
 
-print("Miles Per Run to Match Highest Month: "+str((max_miles-this_month)/runs_remain))
+print("MPR to Match Highest Month: "+str("{0:.2f}".format((max_miles-this_month)/runs_remain)))
 
 print()
 print("WEEKLY")
@@ -232,11 +232,11 @@ print("Most Mile Week: "+str(weekly_dict[most_miles_week]['date_human']))
 
 print("Most Miles Run in a Week: "+str(max_weekly_miles))
 
-print("Miles Per Run to Match Highest Week: "+str(float(max_weekly_miles)-float(current_miles))/runs_remain)
+print("MPR to Match Highest Week: "+str((float(max_weekly_miles)-float(current_miles))/float(runs_remain)))
 
-print("Miles to Match Highest Week: "+str(max_weekly_miles-current_miles))
+print("Miles to Match Highest Week: "+str(float(max_weekly_miles)-float(current_miles)))
 
-print("Most Number of Runs in a Week:")
+#print("Most Number of Runs in a Week:")
 
 
 
@@ -264,9 +264,9 @@ print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
 
 print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
 
-print("Miles per run to YTD Goal by End of Month: "+str(("{0:.2f}".format(remaining_ytd_miles/runs_remain))))
+print("MPR to YTD Goal by End of Month: "+str(("{0:.2f}".format(remaining_ytd_miles/runs_remain))))
 
-print("Miles per run to Goal of 50 by End of Month: "+str(("{0:.2f}".format((50-this_month)/runs_remain))))
+print("MPR to Goal of 50 by End of Month: "+str(("{0:.2f}".format((50-this_month)/runs_remain))))
 
 
 #guess at how many runs remain`
