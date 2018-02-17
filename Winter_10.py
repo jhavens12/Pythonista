@@ -230,9 +230,9 @@ for week in weekly_dict:
 
 print("Miles This Week: "+str(current_miles))
 
-print("Miles Last Week: "+str(past_miles))
+#print("Miles Last Week: "+str(past_miles))
 
-print("10 Percent Last Week: "+str(past_ten_percent))
+#print("10 Percent Last Week: "+str(past_ten_percent))
 
 print("Most Mile Week: "+str(weekly_dict[most_miles_week]['date_human']))
 
