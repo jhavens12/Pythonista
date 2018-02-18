@@ -192,11 +192,11 @@ print("MONTHLY")
 print("**********")
 print("Miles Ran This Month: "+str(this_month))
 
-print("Runs this month: "+str(len(this_month_full)))
+print("Runs This Month: "+str(len(this_month_full)))
 
 print("Miles Ran Last Month: "+str(last_month))
 
-print("Runs last month: "+str(len(last_month_full)))
+print("Runs Last Month: "+str(len(last_month_full)))
 
 print("Days in Month Remaining: "+str(days_remaining))
 
@@ -291,7 +291,7 @@ print("Miles Ran This Year: "+str(miles_this_year))
 
 print("Miles Ran Last Year by now: "+str(miles_last_year_this_time))
 
-print("Miles Behind Last Year: "+str(miles_this_year-miles_last_year_this_time))
+print("Miles Behind Last Year: "+str("{0:.2f}".format(miles_this_year-miles_last_year_this_time)))
 
 goal_2018 = 600
 MPD = goal_2018/365
