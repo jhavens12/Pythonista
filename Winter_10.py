@@ -297,7 +297,7 @@ goal_2018 = 600
 MPD = goal_2018/365
 day_of_year = LOM.timetuple().tm_yday
 target_miles = MPD*day_of_year
-remaining_ytd_miles = target_miles - miles_this_year
+remaining_ytd_miles = miles_this_year - target_miles
 
 
 print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
