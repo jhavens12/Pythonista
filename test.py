@@ -14,3 +14,5 @@ def MTD(dictionary,months_ago):
     return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
 
 pprint(calc.weekly_stats(master_dict.copy()))
+
+pprint(master_dict)

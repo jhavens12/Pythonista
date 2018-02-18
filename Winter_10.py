@@ -47,7 +47,7 @@ def period(dictionary,Sunday,Monday):
         past_run_elapsed_label.append(str(past_dict[i]['elapsed']))
     past_run_treadmill_label = []
     for i in list(sorted(past_dict)):
-        past_run_treadmill_label.append(str(past_dict[i]['treadmill_flagged']))
+        past_run_treadmill_label.append(str(past_dict[i]['total_elevation_feet']))
 
     remaining(past_ten_percent,past_miles)
 
@@ -153,11 +153,11 @@ def button_action_1(sender):
     elif button1.selected_index == 3:
         period(master_dict,3,4)
 
-def MTD(dictionary,months_ago):
+def MTD(dictionary,months_ago): #month to date
     month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
     return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
 
-
+#def RPM(dictionary,months_ago): #runs per month
 # starts gui
 v = ui.load_view()
 v.background_color = "black"
@@ -175,6 +175,9 @@ period(master_dict,0,1)
 ##NEW DATA`
 ####
 
+this_month_full = calc.monthly_daily_totals(dictionary,0,'distance_miles')
+last_month_full = calc.monthly_daily_totals(dictionary,1,'distance_miles')
+
 this_month = MTD(master_dict.copy(),0)
 last_month = MTD(master_dict.copy(),1)
 
@@ -189,7 +192,11 @@ print("MONTHLY")
 print("**********")
 print("Miles Ran This Month: "+str(this_month))
 
+print("Runs this month: "+str(len(this_month_full)))
+
 print("Miles Ran Last Month: "+str(last_month))
+
+print("Runs last month: "+str(len(last_month_full)))
 
 print("Days in Month Remaining: "+str(days_remaining))
 
@@ -199,6 +206,12 @@ runs_per_week = 3
 runs_remain = math.ceil(days_remaining*(runs_per_week/7))
 
 print("Runs Remaining This Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
+
+#goal of 50 miles per month
+
+print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(50-this_month)))
+
+print("MPR to Match 50m Goal: "+ str("{0:.2f}".format((50-this_month)/runs_remain)))
 
 print("MPR to Match Last Month: "+str("{0:.2f}".format(abs(month_difference/runs_remain))))
 
