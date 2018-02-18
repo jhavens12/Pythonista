@@ -105,7 +105,7 @@ def current_period(dictionary):
         current_run_elapsed_label.append(str(dict_2[i]['elapsed']))
     current_run_treadmill_label = []
     for i in list(sorted(dict_2)):
-        current_run_treadmill_label.append(str(dict_2[i]['treadmill_flagged']))
+        current_run_treadmill_label.append(str(dict_2[i]['total_elevation_feet']))
 
     label20= v['label20']
     label20.text = (get_time.weekday(get_time.LM(0)) + " " + str(get_time.LM(0).day) + " - " + get_time.weekday(get_time.now()) + " " + str(get_time.now().day))
@@ -209,6 +209,9 @@ print("Runs Remaining This Month ("+str(runs_per_week)+" per week): "+str(runs_r
 
 #goal of 50 miles per month
 
+print()
+print("GOALS")
+
 print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(50-this_month)))
 
 print("MPR to Match 50m Goal: "+ str("{0:.2f}".format((50-this_month)/runs_remain)))
@@ -285,7 +288,7 @@ print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
 
 print("MPR to YTD Goal by End of Month: "+str(("{0:.2f}".format(remaining_ytd_miles/runs_remain))))
 
-print("MPR to Goal of 50 by End of Month: "+str(("{0:.2f}".format((50-this_month)/runs_remain))))
+#print("MPR to Goal of 50 by End of Month: "+str(("{0:.2f}".format((50-this_month)/runs_remain))))
 
 
 #guess at how many runs remain`
