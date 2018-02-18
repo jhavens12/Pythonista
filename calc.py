@@ -138,6 +138,6 @@ def weekly_stats(dictionary):
         final_dict[week]['year'] = str(week_name[0])
         final_dict[week]['week'] = str(week_name[1])
         week_datetime = datetime.datetime.strptime(week + '-1', "%Y-%W-%w")
-        final_dict[week]['date_human'] = str(week_datetime.year+"-"+week_datetime.month+"-"+week_datetime.day)
+        final_dict[week]['date_human'] = str(week_datetime.year)+"-"+str(week_datetime.month)+"-"+str(week_datetime.day)
 
     return final_dict
