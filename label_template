@@ -1,0 +1,42 @@
+    labelxxx= v['labelxxx']
+    labelxxx.text = str()
+
+
+
+    label111= v['label111']
+    label111.text = str()
+
+    label112= v['label112']
+    label112.text = str()
+
+    label113= v['label113']
+    label113.text = str()
+
+    label114= v['label114']
+    label114.text = str()
+
+    label115= v['label115']
+    label115.text = str()
+
+    label116= v['label116']
+    label116.text = str()
+
+    #
+
+    label121= v['label121']
+    label121.text = str()
+
+    label122= v['label122']
+    label122.text = str()
+
+    label123= v['label123']
+    label123.text = str()
+
+    label124= v['label124']
+    label124.text = str()
+
+    label125= v['label125']
+    label125.text = str()
+
+    label126= v['label126']
+    label126.text = str()
