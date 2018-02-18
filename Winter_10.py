@@ -137,33 +137,188 @@ def remaining(past_ten_percent,past_miles):
     label40= v['label40']
     label40.text = str(remaining_miles)
 
-
 #button
 def button_action_1(sender):
-
     if button1.selected_index == 0:
         period(master_dict,0,1)
-
     if button1.selected_index == 1:
         period(master_dict,1,2)
-
     if button1.selected_index == 2:
         period(master_dict,2,3)
-
     elif button1.selected_index == 3:
         period(master_dict,3,4)
+
+def button_action_2(sender):
+    if button2.selected_index == 0:
+        Monthly(master_dict.copy())
+    elif button2.selected_index == 1:
+        Yearly(master_dict.copy())
 
 def MTD(dictionary,months_ago): #month to date
     month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
     return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
 
-#def RPM(dictionary,months_ago): #runs per month
+def Monthly(dictionary):
+    this_month_full = calc.monthly_daily_totals(master_dict.copy(),0,'distance_miles')
+    last_month_full = calc.monthly_daily_totals(master_dict.copy(),1,'distance_miles')
+    this_month = MTD(master_dict.copy(),0)
+    last_month = MTD(master_dict.copy(),1)
+    month_difference = this_month - last_month
+    now = datetime.datetime.now()
+    past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
+    LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+    days_remaining = LOM.day - now.day
+    runs_per_week = 3
+    runs_remain = math.ceil(days_remaining*(runs_per_week/7))
+    monthly_dict = calc.monthly_stats(master_dict.copy())
+    max_miles = 0
+    for month in monthly_dict:
+        if monthly_dict[month]['miles_ran'] > max_miles:
+            max_miles = int(monthly_dict[month]['miles_ran'])
+            most_miles_month = month
+
+    print("Miles Ran This Month: "+str(this_month))
+    print("Runs This Month: "+str(len(this_month_full)))
+    print("Miles Ran Last Month: "+str(last_month))
+    print("Runs Last Month: "+str(len(last_month_full)))
+    print("Days in Month Remaining: "+str(days_remaining))
+    print("Last Month vs This Month: "+str("{0:.2f}".format(month_difference)))
+    print("Runs Remain in Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
+    print()
+    print("GOALS")
+    print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(this_month-50)))
+    print("MPR to Match 50m Goal: "+ str("{0:.2f}".format((50-this_month)/runs_remain)))
+    print("MPR to Match Last Month: "+str("{0:.2f}".format(abs(month_difference/runs_remain))))
+    print("Most Mile Month: "+monthly_dict[most_miles_month]['date_human'])
+    print("Most Miles Ran in a month: "+str(max_miles))
+    print("MPR to Match Highest Month: "+str("{0:.2f}".format((max_miles-this_month)/runs_remain)))
+
+    #LABELS
+    label111= v['label111']
+    label111.text = str("This Month")
+
+    label112= v['label112']
+    label112.text = str("Run Count")
+
+    label113= v['label113']
+    label113.text = str("Last Month")
+
+    label114= v['label114']
+    label114.text = str("Run Count")
+
+    label115= v['label115']
+    label115.text = str("Difference")
+
+    label116= v['label116']
+    label116.text = str("Runs Remain")
+
+    #
+    #DATA
+    label121= v['label121']
+    label121.text = str(this_month)
+
+    label122= v['label122']
+    label122.text = str(len(this_month_full)))
+
+    label123= v['label123']
+    label123.text = str(last_month)
+
+    label124= v['label124']
+    label124.text = str(len(last_month_full))
+
+    label125= v['label125']
+    label125.text = str("{0:.2f}".format(month_difference)))
+
+    label126= v['label126']
+    label126.text = str(runs_remain)
+
+def Yearly(dictionary):
+    #this year
+    ytd_dict = master_dict.copy()
+    for key in list(ytd_dict):
+        if key < get_time.FOY():
+            del ytd_dict[key]
+    ytd_miles = []
+    for run in ytd_dict:
+        ytd_miles.append(float(ytd_dict[run]['distance_miles']))
+    miles_this_year = sum(ytd_miles)
+
+    #last year
+    timestamp = datetime.datetime.now()
+    past_ytd_dict = master_dict.copy()
+    for key in list(past_ytd_dict):
+        if key < get_time.PFOY():
+            del past_ytd_dict[key]
+        if key > datetime.datetime(timestamp.year - 1, timestamp.month, timestamp.day): #get date this time last year
+            del past_ytd_dict[key]
+    pytd_miles = []
+    for run in past_ytd_dict:
+        pytd_miles.append(float(past_ytd_dict[run]['distance_miles']))
+    miles_last_year_this_time = sum(pytd_miles)
+
+    goal_2018 = 600
+    MPD = goal_2018/365
+    day_of_year = LOM.timetuple().tm_yday
+    target_miles = MPD*day_of_year
+    remaining_ytd_miles = miles_this_year - target_miles
+
+    print()
+    print("YEAR TO DATE")
+    print("**********")
+    print("Miles Ran This Year: "+str(miles_this_year))
+    print("Miles Ran Last Year by now: "+str(miles_last_year_this_time))
+    print("Miles Behind Last Year: "+str("{0:.2f}".format(miles_this_year-miles_last_year_this_time)))
+    print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
+    print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
+    #print("MPR to YTD Goal by End of Month: "+str(("{0:.2f}".format(abs(remaining_ytd_miles)/runs_remain))))
+
+    label111= v['label111']
+    label111.text = str("YTD Miles")
+
+    label112= v['label112']
+    label112.text = str("Last YTD by now")
+
+    label113= v['label113']
+    label113.text = str("Behind")
+
+    label114= v['label114']
+    label114.text = str("2018 Goal")
+
+    label115= v['label115']
+    label115.text = str("Behind")
+
+    label116= v['label116']
+    label116.text = str("")
+
+    #
+
+    label121= v['label121']
+    label121.text = str(miles_this_year)
+
+    label122= v['label122']
+    label122.text = str(miles_last_year_this_time)
+
+    label123= v['label123']
+    label123.text = str("{0:.2f}".format(miles_this_year-miles_last_year_this_time))
+
+    label124= v['label124']
+    label124.text = str(("{0:.2f}".format(target_miles)))
+
+    label125= v['label125']
+    label125.text = str(("{0:.2f}".format(remaining_ytd_miles)))
+
+    label126= v['label126']
+    label126.text = str("")
+
 # starts gui
 v = ui.load_view()
 v.background_color = "black"
 
 button1 = v['segmentedcontrol1']
 button1.action = button_action_1
+
+button2 = v['segmentedcontrol2']
+button2.action = button_action_2
 
 v.present(style='sheet', hide_title_bar=True)
 
@@ -175,141 +330,101 @@ period(master_dict,0,1)
 ##NEW DATA`
 ####
 
-this_month_full = calc.monthly_daily_totals(master_dict.copy(),0,'distance_miles')
-last_month_full = calc.monthly_daily_totals(master_dict.copy(),1,'distance_miles')
+def print_statements(master_dict):
 
-this_month = MTD(master_dict.copy(),0)
-last_month = MTD(master_dict.copy(),1)
+    this_month_full = calc.monthly_daily_totals(master_dict.copy(),0,'distance_miles')
+    last_month_full = calc.monthly_daily_totals(master_dict.copy(),1,'distance_miles')
 
-month_difference = this_month - last_month
+    this_month = MTD(master_dict.copy(),0)
+    last_month = MTD(master_dict.copy(),1)
 
-now = datetime.datetime.now()
-past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
-LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+    month_difference = this_month - last_month
 
-days_remaining = LOM.day - now.day
-print("MONTHLY")
-print("**********")
-print("Miles Ran This Month: "+str(this_month))
+    now = datetime.datetime.now()
+    past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
+    LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+    days_remaining = LOM.day - now.day
+    runs_per_week = 3
+    runs_remain = math.ceil(days_remaining*(runs_per_week/7))
 
-print("Runs This Month: "+str(len(this_month_full)))
+    monthly_dict = calc.monthly_stats(master_dict.copy())
+    max_miles = 0
+    for month in monthly_dict:
+        if monthly_dict[month]['miles_ran'] > max_miles:
+            max_miles = int(monthly_dict[month]['miles_ran'])
+            most_miles_month = month
 
-print("Miles Ran Last Month: "+str(last_month))
+    print("MONTHLY")
+    print("**********")
+    print("Miles Ran This Month: "+str(this_month))
+    print("Runs This Month: "+str(len(this_month_full)))
+    print("Miles Ran Last Month: "+str(last_month))
+    print("Runs Last Month: "+str(len(last_month_full)))
+    print("Days in Month Remaining: "+str(days_remaining))
+    print("Last Month vs This Month: "+str("{0:.2f}".format(month_difference)))
+    print("Runs Remain in Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
+    print()
+    print("GOALS")
+    print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(this_month-50)))
+    print("MPR to Match 50m Goal: "+ str("{0:.2f}".format((50-this_month)/runs_remain)))
+    print("MPR to Match Last Month: "+str("{0:.2f}".format(abs(month_difference/runs_remain))))
+    print("Most Mile Month: "+monthly_dict[most_miles_month]['date_human'])
+    print("Most Miles Ran in a month: "+str(max_miles))
+    print("MPR to Match Highest Month: "+str("{0:.2f}".format((max_miles-this_month)/runs_remain)))
 
-print("Runs Last Month: "+str(len(last_month_full)))
+    weekly_dict = calc.weekly_stats(master_dict.copy())
 
-print("Days in Month Remaining: "+str(days_remaining))
+    max_weekly_miles = 0
+    for week in weekly_dict:
+        if weekly_dict[week]['miles_ran'] > max_weekly_miles:
+            max_weekly_miles = int(weekly_dict[week]['miles_ran'])
+            most_miles_week = week
 
-print("Last Month vs This Month: "+str("{0:.2f}".format(month_difference)))
+    print()
+    print("WEEKLY")
+    print("********")
+    print("Miles This Week: "+str(current_miles))
+    print("Most Mile Week: "+str(weekly_dict[most_miles_week]['date_human']))
+    print("Most Miles Run in a Week: "+str(max_weekly_miles))
+    print("Miles to Match Highest Week: "+str(float(max_weekly_miles)-float(current_miles)))
 
-runs_per_week = 3
-runs_remain = math.ceil(days_remaining*(runs_per_week/7))
+    #this year
+    ytd_dict = master_dict.copy()
+    for key in list(ytd_dict):
+        if key < get_time.FOY():
+            del ytd_dict[key]
+    ytd_miles = []
+    for run in ytd_dict:
+        ytd_miles.append(float(ytd_dict[run]['distance_miles']))
+    miles_this_year = sum(ytd_miles)
 
-print("Runs Remain in Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
+    #last year
+    timestamp = datetime.datetime.now()
+    past_ytd_dict = master_dict.copy()
+    for key in list(past_ytd_dict):
+        if key < get_time.PFOY():
+            del past_ytd_dict[key]
+        if key > datetime.datetime(timestamp.year - 1, timestamp.month, timestamp.day): #get date this time last year
+            del past_ytd_dict[key]
+    pytd_miles = []
+    for run in past_ytd_dict:
+        pytd_miles.append(float(past_ytd_dict[run]['distance_miles']))
+    miles_last_year_this_time = sum(pytd_miles)
 
-#goal of 50 miles per month
+    goal_2018 = 600
+    MPD = goal_2018/365
+    day_of_year = LOM.timetuple().tm_yday
+    target_miles = MPD*day_of_year
+    remaining_ytd_miles = miles_this_year - target_miles
 
-print()
-print("GOALS")
+    print()
+    print("YEAR TO DATE")
+    print("**********")
+    print("Miles Ran This Year: "+str(miles_this_year))
+    print("Miles Ran Last Year by now: "+str(miles_last_year_this_time))
+    print("Miles Behind Last Year: "+str("{0:.2f}".format(miles_this_year-miles_last_year_this_time)))
+    print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
+    print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
+    print("MPR to YTD Goal by End of Month: "+str(("{0:.2f}".format(abs(remaining_ytd_miles)/runs_remain))))
 
-print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(this_month-50)))
-
-print("MPR to Match 50m Goal: "+ str("{0:.2f}".format((50-this_month)/runs_remain)))
-
-print("MPR to Match Last Month: "+str("{0:.2f}".format(abs(month_difference/runs_remain))))
-
-monthly_dict = calc.monthly_stats(master_dict.copy())
-
-max_miles = 0
-for month in monthly_dict:
-    if monthly_dict[month]['miles_ran'] > max_miles:
-        max_miles = int(monthly_dict[month]['miles_ran'])
-        most_miles_month = month
-
-print("Most Mile Month: "+monthly_dict[most_miles_month]['date_human'])
-
-print("Most Miles Ran in a month: "+str(max_miles))
-
-print("MPR to Match Highest Month: "+str("{0:.2f}".format((max_miles-this_month)/runs_remain)))
-
-print()
-print("WEEKLY")
-print("********")
-
-weekly_dict = calc.weekly_stats(master_dict.copy())
-
-max_weekly_miles = 0
-for week in weekly_dict:
-    if weekly_dict[week]['miles_ran'] > max_weekly_miles:
-        max_weekly_miles = int(weekly_dict[week]['miles_ran'])
-        most_miles_week = week
-
-print("Miles This Week: "+str(current_miles))
-
-#print("Miles Last Week: "+str(past_miles))
-
-#print("10 Percent Last Week: "+str(past_ten_percent))
-
-print("Most Mile Week: "+str(weekly_dict[most_miles_week]['date_human']))
-
-print("Most Miles Run in a Week: "+str(max_weekly_miles))
-
-#print("MPR to Match Highest Week: "+str((float(max_weekly_miles)-float(current_miles))/float(runs_remain))) #runs_remain is for month, not week
-
-print("Miles to Match Highest Week: "+str(float(max_weekly_miles)-float(current_miles)))
-
-#print("Most Number of Runs in a Week:")
-
-
-#this year
-ytd_dict = master_dict.copy()
-for key in list(ytd_dict):
-    if key < get_time.FOY():
-        del ytd_dict[key]
-ytd_miles = []
-for run in ytd_dict:
-    ytd_miles.append(float(ytd_dict[run]['distance_miles']))
-miles_this_year = sum(ytd_miles)
-
-#last year
-timestamp = datetime.datetime.now()
-past_ytd_dict = master_dict.copy()
-for key in list(past_ytd_dict):
-    if key < get_time.PFOY():
-        del past_ytd_dict[key]
-    if key > datetime.datetime(timestamp.year - 1, timestamp.month, timestamp.day): #get date this time last year
-        del past_ytd_dict[key]
-pytd_miles = []
-for run in past_ytd_dict:
-    pytd_miles.append(float(past_ytd_dict[run]['distance_miles']))
-miles_last_year_this_time = sum(pytd_miles)
-
-print()
-print("YEAR TO DATE")
-print("**********")
-print("Miles Ran This Year: "+str(miles_this_year))
-
-print("Miles Ran Last Year by now: "+str(miles_last_year_this_time))
-
-print("Miles Behind Last Year: "+str("{0:.2f}".format(miles_this_year-miles_last_year_this_time)))
-
-goal_2018 = 600
-MPD = goal_2018/365
-day_of_year = LOM.timetuple().tm_yday
-target_miles = MPD*day_of_year
-remaining_ytd_miles = miles_this_year - target_miles
-
-
-print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
-
-print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
-
-print("MPR to YTD Goal by End of Month: "+str(("{0:.2f}".format(remaining_ytd_miles/runs_remain))))
-
-#print("MPR to Goal of 50 by End of Month: "+str(("{0:.2f}".format((50-this_month)/runs_remain))))
-
-
-#guess at how many runs remain`
-#distance remaninging per run to match last month
-#distance remaninging per run to hit 50
-#distance remaining per run to catch up on goal
+print_statements(master_dict.copy())
