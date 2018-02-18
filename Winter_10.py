@@ -234,7 +234,10 @@ def Monthly(dictionary):
 
 def Yearly(dictionary):
     #this year
-    LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59) #had to move
+    past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
+    LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+    days_remaining = LOM.day - now.day
+    runs_per_week = 3
 
     ytd_dict = master_dict.copy()
     for key in list(ytd_dict):
@@ -333,7 +336,11 @@ period(master_dict,0,1)
 ####
 
 def print_statements(master_dict):
-
+    past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
+    LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+    days_remaining = LOM.day - now.day
+    runs_per_week = 3
+    
     this_month_full = calc.monthly_daily_totals(master_dict.copy(),0,'distance_miles')
     last_month_full = calc.monthly_daily_totals(master_dict.copy(),1,'distance_miles')
 
