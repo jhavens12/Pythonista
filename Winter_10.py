@@ -175,8 +175,8 @@ period(master_dict,0,1)
 ##NEW DATA`
 ####
 
-this_month_full = calc.monthly_daily_totals(dictionary,0,'distance_miles')
-last_month_full = calc.monthly_daily_totals(dictionary,1,'distance_miles')
+this_month_full = calc.monthly_daily_totals(master_dict.copy(),0,'distance_miles')
+last_month_full = calc.monthly_daily_totals(master_dict.copy(),1,'distance_miles')
 
 this_month = MTD(master_dict.copy(),0)
 last_month = MTD(master_dict.copy(),1)
