@@ -177,21 +177,21 @@ def Monthly(dictionary):
             max_miles = int(monthly_dict[month]['miles_ran'])
             most_miles_month = month
 
-    print("Miles Ran This Month: "+str(this_month))
-    print("Runs This Month: "+str(len(this_month_full)))
-    print("Miles Ran Last Month: "+str(last_month))
-    print("Runs Last Month: "+str(len(last_month_full)))
+    #print("Miles Ran This Month: "+str(this_month))
+    #print("Runs This Month: "+str(len(this_month_full)))
+    #print("Miles Ran Last Month: "+str(last_month))
+    #print("Runs Last Month: "+str(len(last_month_full)))
     print("Days in Month Remaining: "+str(days_remaining))
-    print("Last Month vs This Month: "+str("{0:.2f}".format(month_difference)))
-    print("Runs Remain in Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
+    #print("Last Month vs This Month: "+str("{0:.2f}".format(month_difference)))
+    #print("Runs Remain in Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
     print()
     print("GOALS")
-    print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(this_month-50)))
-    print("MPR to Match 50m Goal: "+ str("{0:.2f}".format((50-this_month)/runs_remain)))
-    print("MPR to Match Last Month: "+str("{0:.2f}".format(abs(month_difference/runs_remain))))
+    #print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(this_month-50)))
+    #print("MPR to Match 50m Goal: "+ str("{0:.2f}".format((50-this_month)/runs_remain)))
+    #print("MPR to Match Last Month: "+str("{0:.2f}".format(abs(month_difference/runs_remain))))
     print("Most Mile Month: "+monthly_dict[most_miles_month]['date_human'])
     print("Most Miles Ran in a month: "+str(max_miles))
-    print("MPR to Match Highest Month: "+str("{0:.2f}".format((max_miles-this_month)/runs_remain)))
+    #print("MPR to Match Highest Month: "+str("{0:.2f}".format((max_miles-this_month)/runs_remain)))
 
     #LABELS
     label111= v['label111']
@@ -232,6 +232,51 @@ def Monthly(dictionary):
     label126= v['label126']
     label126.text = str(runs_remain)
 
+
+    label131= v['label131']
+    label131.text = str("50 Miles Goal")
+
+    label132= v['label132']
+    label132.text = str("MPR to 50M")
+
+    label133= v['label133']
+    label133.text = str("MPR to Last Month")
+
+    label134= v['label134']
+    label134.text = str("MPR to Record Month")
+
+    label135= v['label135']
+    label135.text = str()
+
+    label136= v['label136']
+    label136.text = str()
+
+    label137= v['label137']
+    label137.text = str()
+
+#
+
+    label141= v['label141']
+    label141.text = str("{0:.2f}".format(this_month-50))
+
+    label142= v['label142']
+    label142.text = str("{0:.2f}".format((50-this_month)/runs_remain))
+
+    label143= v['label143']
+    label143.text = str("{0:.2f}".format(abs(month_difference/runs_remain)))
+
+    label144= v['label144']
+    label144.text = str("{0:.2f}".format((max_miles-this_month)/runs_remain))
+
+    label145= v['label145']
+    label145.text = str()
+
+    label146= v['label146']
+    label146.text = str()
+
+    label147= v['label147']
+    label147.text = str()
+
 def Yearly(dictionary):
     #this year
     now = datetime.datetime.now()
@@ -271,11 +316,11 @@ def Yearly(dictionary):
     print()
     print("YEAR TO DATE")
     print("**********")
-    print("Miles Ran This Year: "+str(miles_this_year))
-    print("Miles Ran Last Year by now: "+str(miles_last_year_this_time))
-    print("Miles Behind Last Year: "+str("{0:.2f}".format(miles_this_year-miles_last_year_this_time)))
-    print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
-    print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
+    #print("Miles Ran This Year: "+str(miles_this_year))
+    #print("Miles Ran Last Year by now: "+str(miles_last_year_this_time))
+    #print("Miles Behind Last Year: "+str("{0:.2f}".format(miles_this_year-miles_last_year_this_time)))
+    #print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
+    #print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
     #print("MPR to YTD Goal by End of Month: "+str(("{0:.2f}".format(abs(remaining_ytd_miles)/runs_remain))))
 
     label111= v['label111']
@@ -296,6 +341,9 @@ def Yearly(dictionary):
     label116= v['label116']
     label116.text = str("")
 
+    label117= v['label117']
+    label117.text = str("")
+
     #
 
     label121= v['label121']
@@ -315,6 +363,55 @@ def Yearly(dictionary):
 
     label126= v['label126']
     label126.text = str("")
+
+    label127= v['label127']
+    label127.text = str("")
+
+    #
+
+    label131= v['label131']
+    label131.text = str()
+
+    label132= v['label132']
+    label132.text = str()
+
+    label133= v['label133']
+    label133.text = str()
+
+    label134= v['label134']
+    label134.text = str()
+
+    label135= v['label135']
+    label135.text = str()
+
+    label136= v['label136']
+    label136.text = str()
+
+    label137= v['label137']
+    label137.text = str()
+
+#
+
+    label141= v['label141']
+    label141.text = str()
+
+    label142= v['label142']
+    label142.text = str()
+
+    label143= v['label143']
+    label143.text = str()
+
+    label144= v['label144']
+    label144.text = str()
+
+    label145= v['label145']
+    label145.text = str()
+
+    label146= v['label146']
+    label146.text = str()
+
+    label147= v['label147']
+    label147.text = str()
 
 # starts gui
 v = ui.load_view()
