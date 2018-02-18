@@ -337,6 +337,7 @@ period(master_dict,0,1)
 ####
 
 def print_statements(master_dict):
+    now = datetime.datetime.now()
     past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
     LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
     days_remaining = LOM.day - now.day
@@ -350,11 +351,6 @@ def print_statements(master_dict):
 
     month_difference = this_month - last_month
 
-    now = datetime.datetime.now()
-    past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
-
-    days_remaining = LOM.day - now.day
-    runs_per_week = 3
     runs_remain = math.ceil(days_remaining*(runs_per_week/7))
 
     monthly_dict = calc.monthly_stats(master_dict.copy())
