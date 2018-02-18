@@ -234,6 +234,8 @@ def Monthly(dictionary):
 
 def Yearly(dictionary):
     #this year
+    LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59) #had to move
+
     ytd_dict = master_dict.copy()
     for key in list(ytd_dict):
         if key < get_time.FOY():
@@ -342,7 +344,7 @@ def print_statements(master_dict):
 
     now = datetime.datetime.now()
     past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
-    LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+
     days_remaining = LOM.day - now.day
     runs_per_week = 3
     runs_remain = math.ceil(days_remaining*(runs_per_week/7))
