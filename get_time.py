@@ -31,6 +31,12 @@ def FOY():
     now = datetime.datetime.now()
     return datetime.datetime(now.year, 1, 1)
 
+def PFOY():
+    #first of last year
+    #start of day
+    now = datetime.datetime.now()
+    return datetime.datetime((now.year-1), 1, 1)
+
 def LM(x):
     #last monday
     #start of day

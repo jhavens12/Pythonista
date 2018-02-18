@@ -200,19 +200,19 @@ print("Runs last month: "+str(len(last_month_full)))
 
 print("Days in Month Remaining: "+str(days_remaining))
 
-print("Difference Last Month vs This Month: "+str("{0:.2f}".format(month_difference)))
+print("Last Month vs This Month: "+str("{0:.2f}".format(month_difference)))
 
 runs_per_week = 3
 runs_remain = math.ceil(days_remaining*(runs_per_week/7))
 
-print("Runs Remaining This Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
+print("Runs Remain in Month ("+str(runs_per_week)+" per week): "+str(runs_remain))
 
 #goal of 50 miles per month
 
 print()
 print("GOALS")
 
-print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(50-this_month)))
+print("Goal of 50 Miles per Month: "+ str("{0:.2f}".format(this_month-50)))
 
 print("MPR to Match 50m Goal: "+ str("{0:.2f}".format((50-this_month)/runs_remain)))
 
@@ -261,7 +261,7 @@ print("Miles to Match Highest Week: "+str(float(max_weekly_miles)-float(current_
 #print("Most Number of Runs in a Week:")
 
 
-
+#this year
 ytd_dict = master_dict.copy()
 for key in list(ytd_dict):
     if key < get_time.FOY():
@@ -270,10 +270,28 @@ ytd_miles = []
 for run in ytd_dict:
     ytd_miles.append(float(ytd_dict[run]['distance_miles']))
 miles_this_year = sum(ytd_miles)
+
+#last year
+timestamp = datetime.datetime.now()
+past_ytd_dict = master_dict.copy()
+for key in list(past_ytd_dict):
+    if key < get_time.PFOY():
+        del past_ytd_dict[key]
+    if key > datetime.datetime(timestamp.year - 1, timestamp.month, timestamp.day): #get date this time last year
+        del past_ytd_dict[key]
+pytd_miles = []
+for run in past_ytd_dict:
+    pytd_miles.append(float(past_ytd_dict[run]['distance_miles']))
+miles_last_year_this_time = sum(pytd_miles)
+
 print()
 print("YEAR TO DATE")
 print("**********")
 print("Miles Ran This Year: "+str(miles_this_year))
+
+print("Miles Ran Last Year by now: "+str(miles_last_year_this_time))
+
+print("Miles Behind Last Year: "+str(miles_this_year-miles_last_year_this_time))
 
 goal_2018 = 600
 MPD = goal_2018/365
