@@ -218,7 +218,7 @@ def Monthly(dictionary):
     label121.text = str(this_month)
 
     label122= v['label122']
-    label122.text = str(len(this_month_full)))
+    label122.text = str(len(this_month_full))
 
     label123= v['label123']
     label123.text = str(last_month)
@@ -227,7 +227,7 @@ def Monthly(dictionary):
     label124.text = str(len(last_month_full))
 
     label125= v['label125']
-    label125.text = str("{0:.2f}".format(month_difference)))
+    label125.text = str("{0:.2f}".format(month_difference))
 
     label126= v['label126']
     label126.text = str(runs_remain)
