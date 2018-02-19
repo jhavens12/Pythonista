@@ -240,7 +240,7 @@ def Monthly(dictionary):
     label132.text = str("MPR to 50M")
 
     label133= v['label133']
-    label133.text = str("MPR to Last Month")
+    label133.text = str("MPR Last Month")
 
     label134= v['label134']
     label134.text = str("Month Record")
