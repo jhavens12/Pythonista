@@ -243,10 +243,10 @@ def Monthly(dictionary):
     label133.text = str("MPR to Last Month")
 
     label134= v['label134']
-    label134.text = str("MPR to Record Month")
+    label134.text = str("Month Record")
 
     label135= v['label135']
-    label135.text = str()
+    label135.text = str("MPR to Record")
 
     label136= v['label136']
     label136.text = str()
@@ -266,10 +266,10 @@ def Monthly(dictionary):
     label143.text = str("{0:.2f}".format(abs(month_difference/runs_remain)))
 
     label144= v['label144']
-    label144.text = str("{0:.2f}".format((max_miles-this_month)/runs_remain))
+    label144.text = str(max_miles)
 
     label145= v['label145']
-    label145.text = str()
+    label145.text = str("{0:.2f}".format((max_miles-this_month)/runs_remain))
 
     label146= v['label146']
     label146.text = str()
