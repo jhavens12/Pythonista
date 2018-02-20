@@ -140,7 +140,7 @@ def remaining(past_ten_percent,past_miles,runs_per_week):
     label40.text = str(remaining_miles)
 
     label41= v['label41']
-    label41.text = str("{0:.2f}".format(remaining_miles/(runs_per_week-current_week_count)))
+    label41.text = str("{0:.2f}".format(float(remaining_miles)/(runs_per_week-float(current_week_count))))
 
 def MTD(dictionary,months_ago): #month to date
     month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
