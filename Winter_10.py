@@ -51,7 +51,7 @@ def period(dictionary,Sunday,Monday):
     for i in list(sorted(past_dict)):
         past_run_treadmill_label.append(str(past_dict[i]['total_elevation_feet']))
 
-    remaining(past_ten_percent,past_miles)
+    remaining(past_ten_percent,past_miles,runs_per_week)
 
     label1= v['label1']
     label1.text = (get_time.convert_weekday_full(get_time.LM(Monday)) + " - " + get_time.convert_weekday_full(get_time.LS(Sunday)))
@@ -141,23 +141,6 @@ def remaining(past_ten_percent,past_miles,runs_per_week):
 
     label41= v['label41']
     label41.text = str("{0:.2f}".format(remaining_miles/(runs_per_week-current_week_count)))
-
-#button
-def button_action_1(sender):
-    if button1.selected_index == 0:
-        period(master_dict,0,1)
-    if button1.selected_index == 1:
-        period(master_dict,1,2)
-    if button1.selected_index == 2:
-        period(master_dict,2,3)
-    elif button1.selected_index == 3:
-        period(master_dict,3,4)
-
-def button_action_2(sender):
-    if button2.selected_index == 0:
-        Monthly(master_dict.copy(),runs_per_week)
-    elif button2.selected_index == 1:
-        Yearly(master_dict.copy(),runs_per_week)
 
 def MTD(dictionary,months_ago): #month to date
     month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
@@ -398,6 +381,23 @@ def Yearly(dictionary,runs_per_week):
     label147= v['label147']
     label147.text = str()
 
+#button
+def button_action_1(sender):
+    if button1.selected_index == 0:
+        period(master_dict,0,1)
+    if button1.selected_index == 1:
+        period(master_dict,1,2)
+    if button1.selected_index == 2:
+        period(master_dict,2,3)
+    elif button1.selected_index == 3:
+        period(master_dict,3,4)
+
+def button_action_2(sender):
+    if button2.selected_index == 0:
+        Monthly(master_dict.copy(),runs_per_week)
+    elif button2.selected_index == 1:
+        Yearly(master_dict.copy(),runs_per_week)
+
 # starts gui
 v = ui.load_view()
 v.background_color = "black"
@@ -411,8 +411,9 @@ button2.action = button_action_2
 v.present(style='sheet', hide_title_bar=True)
 
 #initial data presentation
-current_period(master_dict)
-period(master_dict,0,1)
+current_period(master_dict) #gets current w eeks data
+period(master_dict,0,1) #shows top data for last week
+Monthly(master_dict.copy(),runs_per_week) #shows monthly data on bottom
 
 def print_statements(master_dict):
     now = datetime.datetime.now()
