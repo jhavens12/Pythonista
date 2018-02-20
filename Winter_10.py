@@ -176,13 +176,13 @@ def Monthly(dictionary,runs_per_week):
     label111.text = str("This Month")
 
     label112= v['label112']
-    label112.text = str("Run Count")
+    label112.text = str("Last Month")
 
     label113= v['label113']
-    label113.text = str("Last Month")
+    label113.text = str("50 Miles Goal")
 
     label114= v['label114']
-    label114.text = str("Run Count")
+    label114.text = str("MPR to 50M")
 
     label115= v['label115']
     label115.text = str("Difference")
@@ -193,16 +193,16 @@ def Monthly(dictionary,runs_per_week):
     #
     #DATA
     label121= v['label121']
-    label121.text = str(this_month)
+    label121.text = str("{0:.2f}".format(this_month-50))
 
     label122= v['label122']
-    label122.text = str(len(this_month_full))
+    label122.text = str("{0:.2f}".format((50-this_month)/runs_remain))
 
     label123= v['label123']
-    label123.text = str(last_month)
+    label123.text = str(len(this_month_full))
 
     label124= v['label124']
-    label124.text = str(len(last_month_full))
+    label124.text =  str(len(last_month_full))
 
     label125= v['label125']
     label125.text = str("{0:.2f}".format(month_difference))
@@ -210,12 +210,13 @@ def Monthly(dictionary,runs_per_week):
     label126= v['label126']
     label126.text = str(runs_remain)
 
+    #
 
     label131= v['label131']
-    label131.text = str("50 Miles Goal")
+    label131.text = str("Run Count")
 
     label132= v['label132']
-    label132.text = str("MPR to 50M")
+    label132.text = str("Run Count")
 
     label133= v['label133']
     label133.text = str("MPR Last Month")
@@ -232,13 +233,13 @@ def Monthly(dictionary,runs_per_week):
     label137= v['label137']
     label137.text = str()
 
-
+    #
 
     label141= v['label141']
-    label141.text = str("{0:.2f}".format(this_month-50))
+    label141.text = str(this_month)
 
     label142= v['label142']
-    label142.text = str("{0:.2f}".format((50-this_month)/runs_remain))
+    label142.text = str(last_month)
 
     label143= v['label143']
     label143.text = str("{0:.2f}".format(abs(month_difference/runs_remain)))
