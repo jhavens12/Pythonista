@@ -203,25 +203,25 @@ def Monthly(dictionary,runs_per_week):
     #
     #DATA
     label121= v['label121']
-    label121.text = text_format(this_month)
+    label121.text = format_text(this_month)
 
     label122= v['label122']
-    label122.text = text_format(len(this_month_full))
+    label122.text = format_text(len(this_month_full))
 
     label123= v['label123']
-    label123.text = text_format(last_month)
+    label123.text = format_text(last_month)
 
     label124= v['label124']
-    label124.text = text_format(len(last_month_full))
+    label124.text = format_text(len(last_month_full))
 
     label125= v['label125']
-    label125.text = text_format(month_difference)
+    label125.text = format_text(month_difference)
 
     label126= v['label126']
-    label126.text = text_format(runs_remain)
+    label126.text = format_text(runs_remain)
 
     label127= v['label127']
-    label127.text = text_format(abs(month_difference/runs_remain))
+    label127.text = format_text(abs(month_difference/runs_remain))
 
     #
 
@@ -249,10 +249,10 @@ def Monthly(dictionary,runs_per_week):
     #
 
     label141= v['label141']
-    label141.text = text_format(this_month-50)
+    label141.text = format_text(this_month-50)
 
     label142= v['label142']
-    label142.text = text_format((50-this_month)/runs_remain)
+    label142.text = format_text((50-this_month)/runs_remain)
 
     label143= v['label143']
     #label143.text = str("{0:.2f}".format(abs(month_difference/runs_remain)))
@@ -261,7 +261,7 @@ def Monthly(dictionary,runs_per_week):
     label144.text = str(max_miles)
 
     label145= v['label145']
-    label145.text = text_format((max_miles-this_month)/runs_remain)
+    label145.text = format_text((max_miles-this_month)/runs_remain)
 
     label146= v['label146']
     label146.text = str()
@@ -329,19 +329,19 @@ def Yearly(dictionary,runs_per_week):
     #
 
     label121= v['label121']
-    label121.text = text_format(miles_this_year)
+    label121.text = format_text(miles_this_year)
 
     label122= v['label122']
-    label122.text = text_format(miles_last_year_this_time)
+    label122.text = format_text(miles_last_year_this_time)
 
     label123= v['label123']
-    label123.text = text_format(miles_this_year-miles_last_year_this_time)
+    label123.text = format_text(miles_this_year-miles_last_year_this_time)
 
     label124= v['label124']
-    label124.text = text_format(target_miles)
+    label124.text = format_text(target_miles)
 
     label125= v['label125']
-    label125.text = text_format(remaining_ytd_miles)
+    label125.text = format_text(remaining_ytd_miles)
 
     label126= v['label126']
     label126.text = str("")
