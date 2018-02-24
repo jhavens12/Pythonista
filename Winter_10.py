@@ -140,7 +140,14 @@ def remaining(past_ten_percent,past_miles,runs_per_week):
     label40.text = str(remaining_miles)
 
     label41= v['label41']
-    label41.text = str("{0:.2f}".format(float(remaining_miles)/(runs_per_week-float(current_week_count))))
+    if runs_per_week-current_week != 0:
+        miles_per_run_remaining = float(remaining_miles)/(runs_per_week-float(current_week_count))
+        label41.text = format_text(miles_per_run_remaining)
+    else:
+        label41.text = "0"
+
+def format_text(x):
+    return str("{0:.2f}".format(x))
 
 def MTD(dictionary,months_ago): #month to date
     month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
@@ -196,25 +203,25 @@ def Monthly(dictionary,runs_per_week):
     #
     #DATA
     label121= v['label121']
-    label121.text = str(this_month)
+    label121.text = text_format(this_month)
 
     label122= v['label122']
-    label122.text = str(len(this_month_full))
+    label122.text = text_format(len(this_month_full))
 
     label123= v['label123']
-    label123.text = str(last_month)
+    label123.text = text_format(last_month)
 
     label124= v['label124']
-    label124.text = str(len(last_month_full))
+    label124.text = text_format(len(last_month_full))
 
     label125= v['label125']
-    label125.text = str("{0:.2f}".format(month_difference))
+    label125.text = text_format(month_difference)
 
     label126= v['label126']
-    label126.text = str(runs_remain)
+    label126.text = text_format(runs_remain)
 
     label127= v['label127']
-    label127.text = str("{0:.2f}".format(abs(month_difference/runs_remain)))
+    label127.text = text_format(abs(month_difference/runs_remain))
 
     #
 
@@ -242,10 +249,10 @@ def Monthly(dictionary,runs_per_week):
     #
 
     label141= v['label141']
-    label141.text = str("{0:.2f}".format(this_month-50))
+    label141.text = text_format(this_month-50)
 
     label142= v['label142']
-    label142.text = str("{0:.2f}".format((50-this_month)/runs_remain))
+    label142.text = text_format((50-this_month)/runs_remain)
 
     label143= v['label143']
     #label143.text = str("{0:.2f}".format(abs(month_difference/runs_remain)))
@@ -254,7 +261,7 @@ def Monthly(dictionary,runs_per_week):
     label144.text = str(max_miles)
 
     label145= v['label145']
-    label145.text = str("{0:.2f}".format((max_miles-this_month)/runs_remain))
+    label145.text = text_format((max_miles-this_month)/runs_remain)
 
     label146= v['label146']
     label146.text = str()
@@ -322,19 +329,19 @@ def Yearly(dictionary,runs_per_week):
     #
 
     label121= v['label121']
-    label121.text = str("{0:.2f}".format(miles_this_year))
+    label121.text = text_format(miles_this_year)
 
     label122= v['label122']
-    label122.text = str(miles_last_year_this_time)
+    label122.text = text_format(miles_last_year_this_time)
 
     label123= v['label123']
-    label123.text = str("{0:.2f}".format(miles_this_year-miles_last_year_this_time))
+    label123.text = text_format(miles_this_year-miles_last_year_this_time)
 
     label124= v['label124']
-    label124.text = str(("{0:.2f}".format(target_miles)))
+    label124.text = text_format(target_miles)
 
     label125= v['label125']
-    label125.text = str(("{0:.2f}".format(remaining_ytd_miles)))
+    label125.text = text_format(remaining_ytd_miles)
 
     label126= v['label126']
     label126.text = str("")
