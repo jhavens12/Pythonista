@@ -140,7 +140,7 @@ def remaining(past_ten_percent,past_miles,runs_per_week):
     label40.text = str(remaining_miles)
 
     label41= v['label41']
-    if runs_per_week-current_week != 0:
+    if runs_per_week-current_week_count != 0:
         miles_per_run_remaining = float(remaining_miles)/(runs_per_week-float(current_week_count))
         label41.text = format_text(miles_per_run_remaining)
     else:
