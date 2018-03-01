@@ -109,6 +109,18 @@ def current_period(dictionary):
     for i in list(sorted(dict_2)):
         current_run_treadmill_label.append(str(dict_2[i]['total_elevation_feet']))
 
+    #totals at bottom
+    dec_pace_list = []
+    for i in list(sorted(dict_2)):
+        dec_pace_list.append(dict_2[i]['pace_dec'])
+    current_pace_average = get_data.convert_dec_time(sum(dec_pace_list)/len(dec_pace_list))
+    print("Current Pace Average")
+    print(current_pace_average)
+    current_duration_total
+    current_elevation_total
+
+
+
     label20= v['label20']
     label20.text = (get_time.weekday(get_time.LM(0)) + " " + str(get_time.LM(0).day) + " - " + get_time.weekday(get_time.now()) + " " + str(get_time.now().day))
 
@@ -301,7 +313,7 @@ def Yearly(dictionary,runs_per_week):
 
     goal_2018 = 600
     MPD = goal_2018/365
-    day_of_year = datetime.now().timetuple().tm_yday
+    day_of_year = now.timetuple().tm_yday
     #day_of_year = LOM.timetuple().tm_yday #found the day of the last of month for some reason, changed to above
     target_miles = MPD*day_of_year
     remaining_ytd_miles = miles_this_year - target_miles
