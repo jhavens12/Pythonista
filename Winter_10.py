@@ -120,7 +120,7 @@ def current_period(dictionary):
 
     seconds_elapsed_list = []
     for i in list(sorted(dict_2)):
-        seconds_elapsed_list.append(dict_2[i]['elapsed'])
+        seconds_elapsed_list.append(float(dict_2[i]['elapsed']))
     total_elapsed_seconds = sum(seconds_elapsed_list)
     current_duration_total = get_data.convert_seconds_to_minutes(total_elapsed_seconds)
     print("Current Duration Total")
