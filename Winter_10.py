@@ -80,6 +80,29 @@ def period(dictionary,Sunday,Monday):
     label9= v['label9']
     label9.text = ("\n".join(past_run_treadmill_label))
 
+    #totals at bottom
+    dec_pace_list = []
+    for i in list(sorted(past_dict)):
+        dec_pace_list.append(past_dict[i]['pace_dec'])
+    current_pace_average = get_data.convert_dec_time(sum(dec_pace_list)/len(dec_pace_list))
+    label504= v['label504']
+    label504.text = str(current_pace_average)
+
+    seconds_elapsed_list = []
+    for i in list(sorted(past_dict)):
+        seconds_elapsed_list.append(past_dict[i]['elapsed_time'])
+    total_elapsed_seconds = sum(seconds_elapsed_list)
+    current_duration_total = get_data.convert_seconds_to_minutes(total_elapsed_seconds)
+    label505= v['label505']
+    label505.text = str(current_duration_total)
+
+    current_elevation_list = []
+    for i in list(sorted(past_dict)):
+        current_elevation_list.append(float(past_dict[i]['total_elevation_feet']))
+    current_elevation_total = sum(current_elevation_list)
+    label506= v['label506']
+    label506.text = str(current_elevation_total)
+
 def current_period(dictionary):
     dict_2 = dictionary.copy()
     global current_miles
@@ -114,33 +137,23 @@ def current_period(dictionary):
     for i in list(sorted(dict_2)):
         dec_pace_list.append(dict_2[i]['pace_dec'])
     current_pace_average = get_data.convert_dec_time(sum(dec_pace_list)/len(dec_pace_list))
-    print("Current Pace Average")
-    print(current_pace_average)
-
     label501= v['label501']
-    label501.text = format_text(current_pace_average)
+    label501.text = str(current_pace_average)
 
     seconds_elapsed_list = []
     for i in list(sorted(dict_2)):
         seconds_elapsed_list.append(dict_2[i]['elapsed_time'])
     total_elapsed_seconds = sum(seconds_elapsed_list)
     current_duration_total = get_data.convert_seconds_to_minutes(total_elapsed_seconds)
-    print("Current Duration Total")
-    print(current_duration_total)
-
     label502= v['label502']
-    label502.text = format_text(current_duration_total)
+    label502.text = str(current_duration_total)
 
     current_elevation_list = []
     for i in list(sorted(dict_2)):
         current_elevation_list.append(float(dict_2[i]['total_elevation_feet']))
     current_elevation_total = sum(current_elevation_list)
-    print("Current Elevation Total")
-    print(current_elevation_total)
-    print()
-
     label503= v['label503']
-    label503.text = format_text(current_elevation_total)
+    label503.text = str(current_elevation_total)
 
 
 
