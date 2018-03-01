@@ -116,8 +116,23 @@ def current_period(dictionary):
     current_pace_average = get_data.convert_dec_time(sum(dec_pace_list)/len(dec_pace_list))
     print("Current Pace Average")
     print(current_pace_average)
-    current_duration_total
-    current_elevation_total
+
+
+    seconds_elapsed_list = []
+    for i in list(sorted(dict_2)):
+        seconds_elapsed_list.append(dict_2[i]['elapsed'])
+    total_elapsed_seconds = sum(seconds_elapsed_list)
+    current_duration_total = get_data.convert_seconds_to_minutes(total_elapsed_seconds)
+    print("Current Duration Total")
+    print(current_duration_total)
+
+    current_elevation_list = []
+    for i in list(sorted(dict_2)):
+        current_elevation_list.append(float(dict_2[i]['total_elevation_feet']))
+    current_elevation_total = sum(current_elevation_list)
+    print("Current Elevation Total")
+    print(current_elevation_total)
+    print()
 
 
 
