@@ -301,7 +301,8 @@ def Yearly(dictionary,runs_per_week):
 
     goal_2018 = 600
     MPD = goal_2018/365
-    day_of_year = LOM.timetuple().tm_yday
+    day_of_year = datetime.now().timetuple().tm_yday
+    #day_of_year = LOM.timetuple().tm_yday #found the day of the last of month for some reason, changed to above
     target_miles = MPD*day_of_year
     remaining_ytd_miles = miles_this_year - target_miles
 
@@ -525,5 +526,3 @@ def print_statements(master_dict):
     print("2018 Goal for today: "+str(("{0:.2f}".format(target_miles))))
     print("Miles Behind YTD Goal: "+str(("{0:.2f}".format(remaining_ytd_miles))))
     print("MPR to YTD Goal by End of Month: "+str(("{0:.2f}".format(abs(remaining_ytd_miles)/runs_remain))))
-
-print_statements(master_dict.copy())
