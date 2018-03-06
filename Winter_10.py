@@ -355,6 +355,7 @@ def Yearly(dictionary,runs_per_week):
     target_miles = MPD*day_of_year
     remaining_ytd_miles = miles_this_year - target_miles
     days_remaining_in_year = (end_of_year - now).days
+    print("Days remaining in year: "+str(days_remaining_in_year))
 
     #new 3.6.18
     goal_miles_per_day_now = remaining_ytd_miles/days_remaining_in_year
@@ -408,7 +409,7 @@ def Yearly(dictionary,runs_per_week):
     #
 
     label131= v['label131']
-    label131.text = str("2018 Goal")
+    label131.text = str("18 Goal by today")
 
     label132= v['label132']
     label132.text = str("Diff")
