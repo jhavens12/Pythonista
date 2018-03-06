@@ -349,10 +349,10 @@ def Yearly(dictionary,runs_per_week):
     miles_last_year_this_time = sum(pytd_miles)
 
     goal_2018 = 600
-    MPD = goal_2018/365
-    day_of_year = now.timetuple().tm_yday
+    MPD = goal_2018/365 #miels per day starting 1/1
+    day_of_year = now.timetuple().tm_yday #numerical value of day in the year
     #day_of_year = LOM.timetuple().tm_yday #found the day of the last of month for some reason, changed to above
-    target_miles = MPD*day_of_year
+    target_miles = MPD*day_of_year #what my current target_miles should be - NOT year long goal
     remaining_ytd_miles = miles_this_year - target_miles #why is this named like this?
     days_remaining_in_year = (end_of_year - now).days
     print("Days remaining in year: "+str(days_remaining_in_year))
