@@ -305,6 +305,7 @@ def Monthly(dictionary,runs_per_week):
 
     label143= v['label143']
     #label143.text = str("{0:.2f}".format(abs(month_difference/runs_remain)))
+    label143.text = str("")
 
     label144= v['label144']
     label144.text = str(max_miles)
