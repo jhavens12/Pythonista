@@ -281,6 +281,7 @@ def Monthly(dictionary,runs_per_week):
 
     label133= v['label133']
     #label133.text = str("MPR Last Month")
+    label133.text = str("")
 
     label134= v['label134']
     label134.text = str("Month Record")
@@ -373,7 +374,7 @@ def Yearly(dictionary,runs_per_week):
     label113.text = str("Last YTD by now")
 
     label114= v['label114']
-    label114.text = str("Diff")
+    label114.text = str("Difference")
 
     label115= v['label115']
     label115.text = str("")
@@ -413,7 +414,7 @@ def Yearly(dictionary,runs_per_week):
     label131.text = str("18 Goal by today")
 
     label132= v['label132']
-    label132.text = str("Diff")
+    label132.text = str("Difference")
 
     label133= v['label133']
     label133.text = str("Miles Per Day")
