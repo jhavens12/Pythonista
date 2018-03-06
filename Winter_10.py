@@ -322,6 +322,7 @@ def Yearly(dictionary,runs_per_week):
     now = datetime.datetime.now()
     past = datetime.datetime(now.year, now.month - (0-1), 1) - (datetime.timedelta(days=1))
     LOM = datetime.datetime(past.year, past.month, past.day, hour=23, minute=59, second=59)
+    end_of_year = datetime.datetime(now.year, 12, 31)
     days_remaining = LOM.day - now.day
     #runs_per_week = 3
 
@@ -353,21 +354,27 @@ def Yearly(dictionary,runs_per_week):
     #day_of_year = LOM.timetuple().tm_yday #found the day of the last of month for some reason, changed to above
     target_miles = MPD*day_of_year
     remaining_ytd_miles = miles_this_year - target_miles
+    days_remaining_in_year = (end_of_year - now).days
+
+    #new 3.6.18
+    goal_miles_per_day_now = remaining_ytd_miles/days_remaining_in_year
+    goal_miles_per_week_now = goal_miles_per_day_now*7
+    goal_miles_per_run_now = goal_miles_per_week_now/runs_per_week
 
     label111= v['label111']
     label111.text = str("YTD Miles")
 
     label112= v['label112']
-    label112.text = str("Last YTD by now")
+    label112.text = str("")
 
     label113= v['label113']
-    label113.text = str("Behind")
+    label113.text = str("Last YTD by now")
 
     label114= v['label114']
-    label114.text = str("2018 Goal")
+    label114.text = str("Diff")
 
     label115= v['label115']
-    label115.text = str("Behind")
+    label115.text = str("")
 
     label116= v['label116']
     label116.text = str("")
@@ -381,16 +388,16 @@ def Yearly(dictionary,runs_per_week):
     label121.text = format_text(miles_this_year)
 
     label122= v['label122']
-    label122.text = format_text(miles_last_year_this_time)
+    label122.text = str("")
 
     label123= v['label123']
-    label123.text = format_text(miles_this_year-miles_last_year_this_time)
+    label123.text = format_text(miles_last_year_this_time)
 
     label124= v['label124']
-    label124.text = format_text(target_miles)
+    label124.text = format_text(miles_this_year-miles_last_year_this_time)
 
     label125= v['label125']
-    label125.text = format_text(remaining_ytd_miles)
+    label125.text = str("")
 
     label126= v['label126']
     label126.text = str("")
@@ -401,19 +408,19 @@ def Yearly(dictionary,runs_per_week):
     #
 
     label131= v['label131']
-    label131.text = str()
+    label131.text = str("2018 Goal")
 
     label132= v['label132']
-    label132.text = str()
+    label132.text = str("Diff")
 
     label133= v['label133']
-    label133.text = str()
+    label133.text = str("Miles Per Day")
 
     label134= v['label134']
-    label134.text = str()
+    label134.text = str("Miles Per Week")
 
     label135= v['label135']
-    label135.text = str()
+    label135.text = str("Miles Per Run")
 
     label136= v['label136']
     label136.text = str()
@@ -424,19 +431,19 @@ def Yearly(dictionary,runs_per_week):
 
 
     label141= v['label141']
-    label141.text = str()
+    label141.text = format_text(target_miles)
 
     label142= v['label142']
-    label142.text = str()
+    label142.text = format_text(remaining_ytd_miles)
 
     label143= v['label143']
-    label143.text = str()
+    label143.text = format_text(goal_miles_per_day_now)
 
     label144= v['label144']
-    label144.text = str()
+    label144.text = format_text(goal_miles_per_week_now)
 
     label145= v['label145']
-    label145.text = str()
+    label145.text = format_text(goal_miles_per_run_now)
 
     label146= v['label146']
     label146.text = str()
