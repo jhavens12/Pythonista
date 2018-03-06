@@ -358,7 +358,7 @@ def Yearly(dictionary,runs_per_week):
     print("Days remaining in year: "+str(days_remaining_in_year))
 
     #new 3.6.18
-    goal_miles_left_in_year = target_miles - miles_this_year #reverse of remaining_ytd_miles for some reason
+    goal_miles_left_in_year = goal_2018 - miles_this_year #reverse of remaining_ytd_miles for some reason
     goal_miles_per_day_now = goal_miles_left_in_year/days_remaining_in_year
     goal_miles_per_week_now = goal_miles_per_day_now*7
     goal_miles_per_run_now = goal_miles_per_week_now/runs_per_week
