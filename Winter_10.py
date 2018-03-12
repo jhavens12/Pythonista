@@ -136,7 +136,10 @@ def current_period(dictionary):
     dec_pace_list = []
     for i in list(sorted(dict_2)):
         dec_pace_list.append(dict_2[i]['pace_dec'])
-    current_pace_average = get_data.convert_dec_time(sum(dec_pace_list)/len(dec_pace_list))
+    if len(dec_pace_list) != 0:
+        current_pace_average = get_data.convert_dec_time(sum(dec_pace_list)/len(dec_pace_list))
+    else:
+        current_pace_average = 0
     label501= v['label501']
     label501.text = str(current_pace_average)
 
