@@ -202,7 +202,10 @@ def format_text(x):
 
 def MTD(dictionary,months_ago): #month to date
     month_total_dict = calc.monthly_daily_totals(dictionary,months_ago,'distance_miles')
-    return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
+    if month_total_dict.keys():
+        return month_total_dict[max(month_total_dict.keys())] #finds highest date, uses that date to find value
+    else:
+        return 0
 
 def Monthly(dictionary,runs_per_week):
     this_month_full = calc.monthly_daily_totals(master_dict.copy(),0,'distance_miles')
