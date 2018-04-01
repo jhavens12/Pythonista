@@ -130,7 +130,7 @@ def current_period(dictionary):
         current_run_elapsed_label.append(str(dict_2[i]['elapsed']))
     current_run_treadmill_label = []
     for i in list(sorted(dict_2)):
-        current_run_treadmill_label.append(str(dict_2[i]['total_elevation_feet']))
+        current_run_treadmill_label.append(str("{0:.2f}".format(dict_2[i]['total_elevation_feet'])))
 
     #totals at bottom
     dec_pace_list = []
