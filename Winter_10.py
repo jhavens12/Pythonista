@@ -156,7 +156,7 @@ def current_period(dictionary):
         current_elevation_list.append(float(dict_2[i]['total_elevation_feet']))
     current_elevation_total = sum(current_elevation_list)
     label503= v['label503']
-    label503.text = str(current_elevation_total)
+    label503.text = str("{0:.2f}".format(current_elevation_total))
 
 
 
