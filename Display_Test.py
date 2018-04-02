@@ -4,14 +4,15 @@
 import ui
 
 w,h = ui.get_screen_size()
-h = h - 64
-view = ui.View(name = 'Flex', bg_color = 'lightyellow', frame = (0,0,w,h))
+h = h - 300
+view = ui.View(bg_color = 'lightyellow', frame = (0,0,w,h))
 #view.flex = 'WH'
 # label height and button width
 bh = bw = 80
 # margin
-mg = 10
+mg = 20
 
+view_1 =  ui.View([frame=(0, 0, 50, 50), flex='', background_color=black, name=None])
 
 lb1 = ui.Label(name = 'Label1', bg_color = 'yellow', frame =(mg,mg,bw,bh))
 lb1.border_color = 'black'
@@ -56,4 +57,5 @@ view.add_subview(lb4)
 view.add_subview(lb5)
 
 #view.present('screen')
+view.add_subview(view_1)
 view.present(style='sheet', hide_title_bar=True)
