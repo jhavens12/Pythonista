@@ -12,7 +12,8 @@ bh = bw = 80
 # margin
 mg = 20
 
-view_1 =  ui.View([frame=(0, 0, 50, 50), flex='', background_color=black, name=None])
+#view_1 =  ui.View([frame=(0, 0, 50, 50), flex='', background_color=black, name=None])
+view_1 =  ui.View(frame=(0, 0, 50, 50), background_color=black)
 
 lb1 = ui.Label(name = 'Label1', bg_color = 'yellow', frame =(mg,mg,bw,bh))
 lb1.border_color = 'black'
