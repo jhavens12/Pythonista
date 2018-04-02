@@ -18,8 +18,11 @@ tmg = 20
 
 
 #view_1 =  ui.View([frame=(0, 0, 50, 50), flex='', background_color=black, name=None])
-view_1 =  ui.View(frame=(smg, tmg, w/2, h), background_color='orange')
+view_1 =  ui.ScrollView(frame=(smg, tmg, w/2, h), background_color='orange')
 my_range = list(range(0,5))
+
+view_1.content_size = ((tmg+sp)*max(my_range),h*2)
+
 
 for n in my_range:
     button_name = "bt"+str(n)
