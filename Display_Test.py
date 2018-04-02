@@ -9,7 +9,8 @@ view = ui.View(bg_color = 'lightyellow', frame = (0,0,w,h))
 #view.flex = 'WH'
 # label height and button width
 bh = 32
-bw = 80
+bw = 100
+sp = 5
 # margin
 
 smg = 5
@@ -17,18 +18,18 @@ tmg = 20
 
 
 #view_1 =  ui.View([frame=(0, 0, 50, 50), flex='', background_color=black, name=None])
-view_1 =  ui.View(frame=(tmg, smg, w/2, h), background_color='orange')
+view_1 =  ui.View(frame=(smg, tmg, w/2, h), background_color='orange')
 my_range = list(range(0,5))
 
 for n in my_range:
-    button_name = bt+str(n)
-    btn_tmg = tmg*n
-    button_name = ui.Button(name = button_name, bg_color ='white', frame = (smg, btn_tmg, bw, bh))
+    button_name = "bt"+str(n)
+    btn_tmg = (tmg+sp)*n
+    button_name = ui.Button(name = button_name, bg_color ='white', frame = (0, btn_tmg, bw, bh))
     button_name.border_color = 'black'
     button_name.tint_color = 'black'
     button_name.border_width = 1
     button_name.alignment=1
-    button_name.title = button_name
+    button_name.title = "bt"+str(n)
 
     view_1.add_subview(button_name)
 
