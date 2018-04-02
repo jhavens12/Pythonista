@@ -55,4 +55,5 @@ view.add_subview(lb3)
 view.add_subview(lb4)
 view.add_subview(lb5)
 
-view.present('screen')
+#view.present('screen')
+view.present(style='sheet', hide_title_bar=True)
